@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://pfqk4djlob3v"]
+
+[ext_resource type="Script" path="res://script/player.gd" id="1_sharm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ypxp2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vyqy6"]
+albedo_color = Color(0.101961, 1, 1, 1)
+
+[node name="player" type="Area3D"]
+script = ExtResource("1_sharm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ypxp2")
+surface_material_override/0 = SubResource("StandardMaterial3D_vyqy6")

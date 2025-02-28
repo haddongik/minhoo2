@@ -1,12 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://ipqv2cnwajpy"]
+[gd_scene load_steps=7 format=3 uid="uid://ipqv2cnwajpy"]
 
 [ext_resource type="MeshLibrary" uid="uid://ds21xtaqauqwa" path="res://meshlibs/terrain0.meshlib" id="1_4flx1"]
+[ext_resource type="Script" path="res://script/main.gd" id="1_m2jcb"]
+[ext_resource type="Script" path="res://script/cam.gd" id="3_tlhmc"]
+[ext_resource type="PackedScene" uid="uid://pfqk4djlob3v" path="res://script/player.tscn" id="4_kjwop"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wjxij"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80cki"]
+albedo_color = Color(0.92549, 0.133333, 0.141176, 1)
 
 [node name="scene_base" type="Node3D"]
+script = ExtResource("1_m2jcb")
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_4flx1")
 data = {
-"cells": PackedInt32Array(1, 0, 2, 3, 0, 2, 5, 0, 2, 7, 0, 2, 9, 0, 2, 9, 65535, 2, 7, 65535, 2, 5, 65535, 2, 3, 65535, 2, 1, 65535, 2, 1, 65534, 2, 5, 65534, 2, 7, 65534, 2, 9, 65534, 2, 1, 65533, 2, 5, 65533, 2, 7, 65533, 2, 9, 65533, 2, 3, 65534, 2, 3, 65533, 2, 65535, 65533, 2, 65533, 65533, 2, 65531, 65533, 2, 65529, 65533, 2, 65527, 65533, 2, 65525, 65533, 2, 65523, 65533, 2, 65535, 65534, 2, 65533, 65534, 2, 65531, 65534, 2, 65529, 65534, 2, 65527, 65534, 2, 65525, 65534, 2, 65523, 65534, 2, 65535, 65535, 2, 65533, 65535, 2, 65531, 65535, 2, 65529, 65535, 2, 65527, 65535, 2, 65525, 65535, 2, 65523, 65535, 2, 65535, 0, 2, 65533, 0, 2, 65531, 0, 2, 65529, 0, 2, 65527, 0, 2, 65525, 0, 2, 65523, 0, 2, 9, 1, 2, 7, 1, 2, 5, 1, 2, 3, 1, 2, 1, 1, 2, 65535, 1, 2, 65533, 1, 2, 65531, 1, 2, 65529, 1, 2, 65527, 1, 2, 65525, 1, 2, 65523, 1, 2, 65523, 2, 2, 65525, 2, 2, 65527, 2, 2, 65529, 2, 2, 65531, 2, 2, 65533, 2, 2, 65535, 2, 2, 1, 2, 2, 3, 2, 2, 5, 2, 2, 7, 2, 2, 9, 2, 2)
+"cells": PackedInt32Array(1, 0, 2, 3, 0, 2, 5, 0, 2, 7, 0, 2, 9, 65535, 2, 7, 65535, 2, 5, 65535, 2, 3, 65535, 2, 1, 65535, 2, 1, 65534, 2, 5, 65534, 2, 7, 65534, 2, 9, 65534, 2, 1, 65533, 2, 5, 65533, 2, 7, 65533, 2, 9, 65533, 2, 3, 65534, 2, 3, 65533, 2, 65535, 65533, 2, 65533, 65533, 2, 65531, 65533, 2, 65529, 65533, 2, 65527, 65533, 2, 65525, 65533, 2, 65523, 65533, 2, 65535, 65534, 2, 65533, 65534, 2, 65531, 65534, 2, 65529, 65534, 2, 65527, 65534, 2, 65525, 65534, 2, 65523, 65534, 2, 65535, 65535, 2, 65533, 65535, 2, 65531, 65535, 2, 65529, 65535, 2, 65527, 65535, 2, 65525, 65535, 2, 65523, 65535, 2, 65535, 0, 2, 65533, 0, 2, 65531, 0, 2, 65529, 0, 2, 65527, 0, 2, 65525, 0, 2, 65523, 0, 2, 9, 1, 2, 7, 1, 2, 5, 1, 2, 3, 1, 2, 1, 1, 2, 65535, 1, 2, 65533, 1, 2, 65531, 1, 2, 65529, 1, 2, 65527, 1, 2, 65525, 1, 2, 65523, 1, 2, 65523, 2, 2, 65525, 2, 2, 65527, 2, 2, 65529, 2, 2, 65531, 2, 2, 65533, 2, 2, 65535, 2, 2, 1, 2, 2, 3, 2, 2, 5, 2, 2, 7, 2, 2, 9, 2, 2, 11, 0, 2, 11, 1, 2, 11, 2, 2, 9, 0, 2, 11, 65535, 2, 11, 65534, 2, 11, 65533, 2)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 1)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.107895, 0.994162, 0, -0.994162, -0.107895, 0, 14.3825, 0)
+
+[node name="cam" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000114441, 0, 0)
+script = ExtResource("3_tlhmc")
+
+[node name="Camera3D" type="Camera3D" parent="cam"]
+transform = Transform3D(0.999283, 0.00376781, 0.0376856, -0.0340699, 0.524035, 0.851015, -0.0165421, -0.851688, 0.523788, 0, 11.4376, 27.5574)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05608, 0)
+mesh = SubResource("BoxMesh_wjxij")
+surface_material_override/0 = SubResource("StandardMaterial3D_80cki")
+
+[node name="player" parent="." instance=ExtResource("4_kjwop")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0754048, 1.24441, 1.08692)
