@@ -16,6 +16,9 @@ func _process(delta: float) -> void:
 		dir = Vector3.RIGHT
 	elif Input.is_action_pressed("ui_right"):
 		dir = Vector3.LEFT
+		
+	if dir == Vector3.BACK:
+		get_parent().set_z_player(int(global_position.z))
 	
 	if dir != Vector3.ZERO and not is_moving:
 		is_moving = true

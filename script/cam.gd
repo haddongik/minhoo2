@@ -6,7 +6,14 @@ var old_line : int = 0
 var new_line : int = 0
 
 func _physics_process(delta: float) -> void:
-	velocity = speed * Vector3.BACK
+	var ratio := 0
+	var player_z = get_parent().z_player
+	var diff = player_z - int(self.global_position.z)
+	
+	if diff > 20:
+		ratio = diff/5
+	
+	velocity = lerp(velocity, (speed + ratio) * Vector3.BACK, 0.05)
 	move_and_slide()
 	
 	new_line =  int(global_position.z)
